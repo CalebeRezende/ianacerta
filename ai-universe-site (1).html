@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universo da IA - Tudo sobre Inteligência Artificial</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            color: #4facfe;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        nav a:hover {
+            color: #4facfe;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 80px 0;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(79, 172, 254, 0.3);
+        }
+
+        .section {
+            padding: 80px 0;
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: white;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            color: #4facfe;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .card p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .card-link {
+            color: #4facfe;
+            text-decoration: none;
+            font-weight: bold;
+            border: 2px solid #4facfe;
+            padding: 8px 16px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .card-link:hover {
+            background: #4facfe;
+            color: white;
+        }
+
+        .ai-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .ai-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .ai-item:hover {
+            transform: scale(1.05);
+        }
+
+        .ai-item h4 {
+            color: #4facfe;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .ai-item p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .ai-link {
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .my-projects {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            border: 2px solid rgba(79, 172, 254, 0.3);
+        }
+
+        .my-projects h3 {
+            color: #4facfe;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .project-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .project-item h4 {
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .project-item p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 15px;
+        }
+
+        .project-link {
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .project-link:hover {
+            transform: translateY(-2px);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: rgba(255, 255, 255, 0.7);
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .mobile-menu {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ai-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .intro-text {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo" onclick="showSection('home')">
+                    <i class="fas fa-brain"></i>
+                    Universo da IA
+                </a>
+                <nav>
+                    <ul>
+                        <li><a onclick="showSection('home')">Início</a></li>
+                        <li><a onclick="showSection('about')">Sobre IA</a></li>
+                        <li><a onclick="showSection('ais')">Lista de IAs</a></li>
+                        <li><a onclick="showSection('categories')">Categorias</a></li>
+                        <li><a onclick="showSection('singularities')">Singularidades</a></li>
+                        <li><a onclick="showSection('projects')">Meus Projetos</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <div class="hero">
+                <h1>Universo da IA</h1>
+                <p>Explore o fascinante mundo da Inteligência Artificial e descubra as ferramentas que estão transformando o futuro</p>
+                <a href="#" class="cta-button" onclick="showSection('ais')">
+                    <i class="fas fa-rocket"></i> Explorar IAs
+                </a>
+            </div>
+
+            <div class="intro-text">
+                <h3 style="color: #4facfe; margin-bottom: 20px;">Bem-vindo ao futuro!</h3>
+                <p>A Inteligência Artificial não é mais ficção científica - é realidade presente em nossas vidas. Desde assistentes virtuais até criação de arte, as IAs estão revolucionando como trabalhamos, criamos e nos comunicamos. Este site é seu guia completo para navegar neste universo em constante expansão.</p>
+            </div>
+
+            <div class="cards-grid">
+                <div class="card" onclick="showSection('about')">
+                    <i class="fas fa-lightbulb card-icon"></i>
+                    <h3>O que é IA?</h3>
+                    <p>Descubra os fundamentos da Inteligência Artificial e como ela funciona</p>
+                    <a href="#" class="card-link">Saiba Mais</a>
+                </div>
+                <div class="card" onclick="showSection('ais')">
+                    <i class="fas fa-robot card-icon"></i>
+                    <h3>Catálogo de IAs</h3>
+                    <p>Explore nossa extensa lista de ferramentas de IA para todas as necessidades</p>
+                    <a href="#" class="card-link">Ver Lista</a>
+                </div>
+                <div class="card" onclick="showSection('projects')">
+                    <i class="fas fa-star card-icon"></i>
+                    <h3>Meus Projetos</h3>
+                    <p>Confira criações incríveis feitas com IA, incluindo contos e experimentos</p>
+                    <a href="#" class="card-link">Ver Projetos</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <h2 class="section-title">O que é Inteligência Artificial?</h2>
+            <div class="intro-text">
+                <p>A Inteligência Artificial (IA) é uma área da ciência da computação que se dedica a criar sistemas capazes de realizar tarefas que normalmente requeriam inteligência humana. Isso inclui aprendizado, raciocínio, percepção, compreensão de linguagem natural e resolução de problemas.</p>
+            </div>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <i class="fas fa-brain card-icon"></i>
+                    <h3>Machine Learning</h3>
+                    <p>Sistemas que aprendem e melhoram automaticamente através da experiência, sem serem explicitamente programados para cada tarefa específica.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-comments card-icon"></i>
+                    <h3>Processamento de Linguagem Natural</h3>
+                    <p>Capacidade das máquinas de entender, interpretar e gerar linguagem humana de forma natural e contextual.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-eye card-icon"></i>
+                    <h3>Visão Computacional</h3>
+                    <p>Habilidade de identificar e analisar conteúdo visual, como imagens e vídeos, extraindo informações significativas.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-network-wired card-icon"></i>
+                    <h3>Redes Neurais</h3>
+                    <p>Sistemas inspirados no funcionamento do cérebro humano, capazes de reconhecer padrões complexos em dados.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- AIs List Section -->
+        <section id="ais" class="section">
+            <h2 class="section-title">Catálogo Completo de IAs</h2>
+            
+            <div class="ai-grid">
+                <div class="ai-item">
+                    <h4>ChatGPT</h4>
+                    <p>Assistente conversacional avançado para textos, códigos e análises.</p>
+                    <a href="https://chat.openai.com" class="ai-link" target="_blank">Acessar ↗</a>
+                </div>
+                <div class="ai-item">
+                    <h4>Claude</h4>
+                    <p>IA conversacional da Anthropic com foco em segurança e utilidade.</p>
+                    <a href="https://claude.ai" class="ai-link" target="_blank">Acessar ↗</a>
+                </div>
+                <div class="ai-item">
+                    <h4>Gemini</h4>
+                    <p>IA do Google para conversas, análises e criação de conteúdo.</p>
+                    <a href="https://gemini.google.com" class="ai-link" target="_blank">Acessar ↗</a>
+                </div>
+                <div class="ai-item">
+                    <h4>Midjourney</h4>
+                    <p>Geração de imagens artísticas de alta qualidade via Discord.</p>
+                    <a href="https://midjourney.com" class="ai-link" target="_blank">Acessar ↗</a>
+                </div>
+                <div class="ai-item">
+                    <h4>DALL-E 3</h4>
+                    <p>Criador de imagens realistas e criativas a partir de descrições.</p>
+                    <a href="https://openai.com/dall-e-3" class="ai-link" target="_blank">Acessar ↗</a>
+                </div>
+                <div class="ai-item">
+                    <h4>Stable Diffusion</h4>
+                    <p>IA open-source para geração de imagens com controle avançado.</p>
+                    <a href="https://stability.ai" class="ai-link" target="_blank">Acessar ↗</a>
+                </div>
+                <div class="ai-item">
+                    <h4>RunwayML</h4>
+                    <p>Plataforma completa para criação de vídeos e efeitos com IA.</p>
+                    <a href="https://runwayml.com" class="ai-link" target="_blank">Acessar ↗</a>
+                </div>
+                <div class="ai-item">
+                    <h4>ElevenLabs</h4>
+                    <p>Geração de voz sintética realista e clonagem vocal.</p>
+                    <a href="https://elevenlabs.io" class="ai-link" target="_blank">Acessar ↗</a>
+                </div>
+                <div class="ai-item">
+                    <h4>GitHub Copilot</h4>
+                    <p>Assistente de programação que sugere código em tempo real.</p>
+                    <a href="https://github.com/features/copilot" class="ai-link" target="_blank">Acessar ↗</a>
+                </div>
+                <div class="ai-item">
+                    <h4>Cursor</h4>
+                    <p>Editor de código com IA integrada para desenvolvimento.</p>
+                    <a href="https://cursor.sh" class="ai-link" target="_blank">Acessar ↗</a>
+                </div>
+                <div class="ai-item">
+                    <h4>Perplexity</h4>
+                    <p>Motor de busca com IA que fornece respostas precisas e citadas.</p>
+                    <a href="https://perplexity.ai" class="ai-link" target="_blank">Acessar ↗</a>
+                </div>
+                <div class="ai-item">
+                    <h4>Notion AI</h4>
+                    <p>IA integrada ao Notion para produtividade e organização.</p>
+                    <a href="https://notion.so" class="ai-link" target="_blank">Acessar ↗</a>
+                </div>
+                <div class="ai-item">
+                    <h4>Jasper</h4>
+                    <p>IA especializada em marketing e criação de conteúdo.</p>
+                    <a href="https://jasper.ai" class="ai-link" target="_blank">Acessar ↗</a>
+                </div>
+                <div class="ai-item">
+                    <h4>Copy.ai</h4>
+                    <p>Gerador de textos para marketing, vendas e conteúdo.</p>
+                    <a href="https://copy.ai" class="ai-link" target="_blank">Acessar ↗</a>
+                </div>
+                <div class="ai-item">
+                    <h4>Synthesia</h4>
+                    <p>Criação de vídeos com avatares virtuais realistas.</p>
+                    <a href="https://synthesia.io" class="ai-link" target="_blank">Acessar ↗</a>
+                </div>
+                <div class="ai-item">
+                    <h4>Otter.ai</h4>
+                    <p>Transcrição automática de reuniões e conversas.</p>
+                    <a href="https://otter.ai" class="ai-link" target="_blank">Acessar ↗</a>
+                </div>
+                <div class="ai-item">
+                    <h4>Luma AI</h4>
+                    <p>Criação de modelos 3D a partir de fotos e vídeos.</p>
+                    <a href="https://lumalabs.ai" class="ai-link" target="_blank">Acessar ↗</a>
+                </div>
+                <div class="ai-item">
+                    <h4>Character.AI</h4>
+                    <p>Plataforma para criar e conversar com personagens IA.</p>
+                    <a href="https://character.ai" class="ai-link" target="_blank">Acessar ↗</a>
+                </div>
+                <div class="ai-item">
+                    <h4>Replika</h4>
+                    <p>Companheiro IA para conversas e desenvolvimento pessoal.</p>
+                    <a href="https://replika.ai" class="ai-link" target="_blank">Acessar ↗</a>
+                </div>
+                <div class="ai-item">
+                    <h4>DeepL</h4>
+                    <p>Tradutor com IA de alta precisão para múltiplos idiomas.</p>
+                    <a href="https://deepl.com" class="ai-link" target="_blank">Acessar ↗</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section id="categories" class="section">
+            <h2 class="section-title">Categorias de IA</h2>
+            
+            <div class="cards-grid">
+                <div class="card">
+                    <i class="fas fa-pen-fancy card-icon"></i>
+                    <h3>Criação de Texto</h3>
+                    <p>IAs para escrever artigos, roteiros, poesias e conteúdo criativo</p>
+                    <div style="margin-top: 15px; font-size: 0.9rem; color: rgba(255,255,255,0.8);">
+                        ChatGPT • Claude • Jasper • Copy.ai • Writesonic
+                    </div>
+                </div>
+                <div class="card">
+                    <i class="fas fa-image card-icon"></i>
+                    <h3>Geração de Imagens</h3>
+                    <p>Criação de arte digital, ilustrações e designs únicos</p>
+                    <div style="margin-top: 15px; font-size: 0.9rem; color: rgba(255,255,255,0.8);">
+                        Midjourney • DALL-E • Stable Diffusion • Adobe Firefly
+                    </div>
+                </div>
+                <div class="card">
+                    <i class="fas fa-video card-icon"></i>
+                    <h3>Criação de Vídeos</h3>
+                    <p>Edição automática e geração de conteúdo audiovisual</p>
+                    <div style="margin-top: 15px; font-size: 0.9rem; color: rgba(255,255,255,0.8);">
+                        RunwayML • Synthesia • Pictory • InVideo AI
+                    </div>
+                </div>
+                <div class="card">
+                    <i class="fas fa-microphone card-icon"></i>
+                    <h3>Áudio e Voz</h3>
+                    <p>Síntese de voz, música e processamento de áudio</p>
+                    <div style="margin-top: 15px; font-size: 0.9rem; color: rgba(255,255,255,0.8);">
+                        ElevenLabs • Murf • Speechify • AIVA
+                    </div>
+                </div>
+                <div class="card">
+                    <i class="fas fa-code card-icon"></i>
+                    <h3>Programação</h3>
+                    <p>Assistentes para desenvolvimento e automação de código</p>
+                    <div style="margin-top: 15px; font-size: 0.9rem; color: rgba(255,255,255,0.8);">
+                        GitHub Copilot • Cursor • Tabnine • Amazon CodeWhisperer
+                    </div>
+                </div>
+                <div class="card">
+                    <i class="fas fa-chart-line card-icon"></i>
+                    <h3>Análise de Dados</h3>
+                    <p>Processamento e insights automáticos de informações</p>
+                    <div style="margin-top: 15px; font-size: 0.9rem; color: rgba(255,255,255,0.8);">
+                        DataRobot • H2O.ai • Tableau AI • Power BI AI
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Singularities Section -->
+        <section id="singularities" class="section">
+            <h2 class="section-title">Singularidades</h2>
+            
+            <div class="intro-text">
+                <h3 style="color: #4facfe; margin-bottom: 20px;">Explorando os Limites da IA</h3>
+                <p>A singularidade tecnológica representa o momento hipotético em que a inteligência artificial supera a inteligência humana, levando a mudanças imprevisíveis e aceleradas na civilização. Explore conteúdos únicos sobre este fascinante tema.</p>
+            </div>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <i class="fas fa-rocket card-icon"></i>
+                    <h3>Vídeo Especial</h3>
+                    <p>Conteúdo exclusivo explorando as singularidades da IA e suas implicações para o futuro da humanidade.</p>
+                    
+                                            <div style="background: rgba(0,0,0,0.3); border-radius: 15px; padding: 20px; border: 2px solid #4facfe;">
+                            <!-- Vídeo do GitHub -->
+                            <video width="100%" height="300" controls style="border-radius: 10px; background: #000;">
+                                <source src="https://github.com/CalebeRezende/ianacerta/raw/main/WhatsApp%20Video%202025-08-04%20at%2010.18.25.mp4" type="video/mp4">
+                                <p style="color: white; text-align: center; padding: 20px;">
+                                    Seu navegador não suporta vídeo HTML5. 
+                                    <a href="https://github.com/CalebeRezende/ianacerta/raw/main/WhatsApp%20Video%202025-08-04%20at%2010.18.25.mp4" style="color: #4facfe;">
+                                        Clique aqui para assistir o vídeo
+                                    </a>
+                                </p>
+                            </video>
+                            <p style="font-size: 0.9rem; color: rgba(255,255,255,0.8); text-align: center; margin-top: 15px;">
+                                🎬 Explorando as Singularidades da Inteligência Artificial
+                            </p>
+                        </div>
+                    
+                    <a href="https://github.com/CalebeRezende/ianacerta" class="card-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i> Ver no GitHub
+                    </a>
+                </div>
+
+                <div class="card">
+                    <i class="fas fa-infinity card-icon"></i>
+                    <h3>O que é Singularidade?</h3>
+                    <p>A singularidade tecnológica é um ponto hipotético no futuro onde o crescimento tecnológico se torna incontrolável e irreversível, resultando em mudanças imprevisíveis na civilização humana.</p>
+                    <ul style="color: rgba(255,255,255,0.8); margin: 15px 0; padding-left: 20px;">
+                        <li>Superinteligência artificial</li>
+                        <li>Crescimento exponencial</li>
+                        <li>Transformação civilizacional</li>
+                        <li>Horizonte de eventos tecnológico</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <i class="fas fa-brain card-icon"></i>
+                    <h3>Teorias e Perspectivas</h3>
+                    <p>Diferentes visões sobre quando e como a singularidade pode ocorrer, desde previsões otimistas até cenários mais cautelosos.</p>
+                    <div style="margin-top: 15px; font-size: 0.9rem; color: rgba(255,255,255,0.8);">
+                        <strong>Pensadores:</strong><br>
+                        Ray Kurzweil • Vernor Vinge • Nick Bostrom • Stuart Russell
+                    </div>
+                </div>
+
+                <div class="card">
+                    <i class="fas fa-chart-line card-icon"></i>
+                    <h3>Indicadores Atuais</h3>
+                    <p>Marcos e avanços que podem sinalizar nossa aproximação com a singularidade tecnológica.</p>
+                    <ul style="color: rgba(255,255,255,0.8); margin: 15px 0; padding-left: 20px;">
+                        <li>GPTs e LLMs avançados</li>
+                        <li>IA multimodal</li>
+                        <li>Automação generalizada</li>
+                        <li>Computação quântica</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <i class="fas fa-shield-alt card-icon"></i>
+                    <h3>Preparação e Segurança</h3>
+                    <p>Como a humanidade pode se preparar para uma possível singularidade, garantindo que seja benéfica para todos.</p>
+                    <div style="margin-top: 15px; font-size: 0.9rem; color: rgba(255,255,255,0.8);">
+                        <strong>Áreas de foco:</strong><br>
+                        Alinhamento de IA • Ética tecnológica • Governança global
+                    </div>
+                </div>
+
+                <div class="card">
+                    <i class="fas fa-globe card-icon"></i>
+                    <h3>Impacto Social</h3>
+                    <p>As possíveis transformações sociais, econômicas e culturais que podem acompanhar a singularidade.</p>
+                    <ul style="color: rgba(255,255,255,0.8); margin: 15px 0; padding-left: 20px;">
+                        <li>Transformação do trabalho</li>
+                        <li>Nova economia digital</li>
+                        <li>Redefinição da humanidade</li>
+                        <li>Democracia e IA</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="my-projects" style="margin-top: 50px;">
+                <h3><i class="fas fa-video"></i> Conteúdo em Vídeo</h3>
+                <p style="text-align: center; color: rgba(255,255,255,0.8); margin-bottom: 30px;">
+                    Explore conceitos complexos sobre singularidade tecnológica através de conteúdo visual
+                </p>
+                
+                <!-- Aqui você pode adicionar mais vídeos ou embeds -->
+                <div class="project-item">
+                    <h4>🎬 Série: Caminhos para a Singularidade</h4>
+                    <p>Uma jornada visual através dos desenvolvimentos mais importantes que nos levam em direção à singularidade tecnológica.</p>
+                    
+                    <!-- Vídeo do GitHub -->
+                    <div style="background: #000; border-radius: 10px; padding: 20px; margin: 20px 0; border: 2px solid #4facfe;">
+                        <video width="100%" height="400" controls style="border-radius: 10px; background: #000;">
+                            <source src="https://github.com/CalebeRezende/ianacerta/raw/main/WhatsApp%20Video%202025-08-04%20at%2010.18.25.mp4" type="video/mp4">
+                            <p style="color: white; text-align: center; padding: 20px;">
+                                Seu navegador não suporta vídeo HTML5. 
+                                <a href="https://github.com/CalebeRezende/ianacerta/raw/main/WhatsApp%20Video%202025-08-04%20at%2010.18.25.mp4" style="color: #4facfe;">
+                                    Clique aqui para baixar o vídeo
+                                </a>
+                            </p>
+                        </video>
+                        <p style="text-align: center; color: rgba(255,255,255,0.8); margin-top: 15px; font-size: 0.9rem;">
+                            🎬 Vídeo sobre Singularidades da IA
+                        </p>
+                    </div>
+                    
+                    <a href="https://github.com/CalebeRezende/ianacerta" class="project-link" target="_blank">
+                        <i class="fas fa-code"></i> Ver Código no GitHub
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section">
+            <h2 class="section-title">Meus Projetos com IA</h2>
+            
+            <div class="my-projects">
+                <h3><i class="fas fa-star"></i> Projetos Pessoais</h3>
+                
+                <div class="project-item">
+                    <h4><i class="fas fa-book"></i> Conto Criativo - "O Futuro em Minhas Mãos"</h4>
+                    <p>Uma história fascinante criada em colaboração com o Gemini, explorando temas de tecnologia, humanidade e o futuro. Este conto combina elementos de ficção científica com reflexões profundas sobre nossa relação com a tecnologia.</p>
+                    <a href="#" class="project-link" onclick="alert('Substitua este link pelo seu arquivo do Google Drive!')">
+                        <i class="fas fa-external-link-alt"></i> Ver no Drive
+                    </a>
+                </div>
+
+                <div class="project-item">
+                    <h4><i class="fas fa-palette"></i> Galeria de Arte IA</h4>
+                    <p>Coleção de imagens únicas criadas com diferentes ferramentas de IA, explorando estilos artísticos variados desde realismo até arte abstrata.</p>
+                    <a href="#" class="project-link" onclick="alert('Adicione aqui o link da sua pasta de imagens!')">
+                        <i class="fas fa-external-link-alt"></i> Ver Galeria
+                    </a>
+                </div>
+
+                <div class="project-item">
+                    <h4><i class="fas fa-music"></i> Experimentos Sonoros</h4>
+                    <p>Composições musicais e experimentos com síntese de voz usando diferentes IAs de áudio, criando paisagens sonoras únicas e inovadoras.</p>
+                    <a href="#" class="project-link" onclick="alert('Adicione aqui o link dos seus experimentos de áudio!')">
+                        <i class="fas fa-external-link-alt"></i> Ouvir Experimentos
+                    </a>
+                </div>
+
+                <div class="project-item">
+                    <h4><i class="fas fa-robot"></i> Conversas Filosóficas</h4>
+                    <p>Diálogos profundos com diferentes IAs sobre temas como consciência, criatividade e o papel da tecnologia na sociedade. Uma exploração fascinante da "mente artificial".</p>
+                    <a href="#" class="project-link" onclick="alert('Adicione aqui o link das suas conversas mais interessantes!')">
+                        <i class="fas fa-external-link-alt"></i> Ler Conversas
+                    </a>
+                </div>
+            </div>
+
+            <div class="intro-text">
+                <h3 style="color: #4facfe; margin-bottom: 15px;">Como Adicionar Seus Links</h3>
+                <p>Para conectar seus projetos do Google Drive:</p>
+                <ol style="text-align: left; margin: 20px auto; max-width: 600px;">
+                    <li>Abra o arquivo no Google Drive</li>
+                    <li>Clique em "Compartilhar" e defina como "Qualquer pessoa com o link"</li>
+                    <li>Copie o link e substitua nos botões "Ver no Drive" acima</li>
+                    <li>Edite os títulos e descrições conforme seus projetos reais</li>
+                </ol>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Universo da IA. Explorando as possibilidades infinitas da Inteligência Artificial.</p>
+            <p style="margin-top: 10px; opacity: 0.6;">
+                <i class="fas fa-heart" style="color: #4facfe;"></i> 
+                Feito com paixão pela tecnologia
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show the selected section
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+            
+            // Smooth scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Add some interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click effects to cards
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                });
+            });
+
+            // Add floating animation to the hero section
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                let scrolled = false;
+                window.addEventListener('scroll', function() {
+                    if (!scrolled) {
+                        scrolled = true;
+                        hero.style.transform = `translateY(${window.pageYOffset * 0.5}px)`;
+                        requestAnimationFrame(() => scrolled = false);
+                    }
+                });
+            }
+
+            // Add typing effect to hero title
+            const heroTitle = document.querySelector('.hero h1');
+            if (heroTitle) {
+                const text = heroTitle.textContent;
+                heroTitle.textContent = '';
+                let i = 0;
+                const typeWriter = () => {
+                    if (i < text.length) {
+                        heroTitle.textContent += text.charAt(i);
+                        i++;
+                        setTimeout(typeWriter, 100);
+                    }
+                };
+                setTimeout(typeWriter, 500);
+            }
+
+            // Add smooth hover effects
+            const aiItems = document.querySelectorAll('.ai-item');
+            aiItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.backgroundColor = 'rgba(79, 172, 254, 0.1)';
+                });
+                item.addEventListener('mouseleave', function() {
+                    this.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+                });
+            });
+
+            // Add particle effect to background (optional)
+            createParticles();
+        });
+
+        function createParticles() {
+            const particlesContainer = document.createElement('div');
+            particlesContainer.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                z-index: -1;
+                overflow: hidden;
+            `;
+            document.body.appendChild(particlesContainer);
+
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.style.cssText = `
+                    position: absolute;
+                    width: 2px;
+                    height: 2px;
+                    background: rgba(79, 172, 254, 0.5);
+                    border-radius: 50%;
+                    animation: float ${5 + Math.random() * 10}s infinite linear;
+                    left: ${Math.random() * 100}%;
+                    top: ${Math.random() * 100}%;
+                `;
+                particlesContainer.appendChild(particle);
+            }
+
+            // Add CSS animation for particles
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes float {
+                    0% { transform: translateY(0px) rotate(0deg); opacity: 1; }
+                    50% { opacity: 0.5; }
+                    100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        // Add search functionality
+        function searchAIs() {
+            const searchTerm = prompt("Digite o nome da IA que você procura:");
+            if (searchTerm) {
+                const aiItems = document.querySelectorAll('.ai-item h4');
+                let found = false;
+                
+                aiItems.forEach(item => {
+                    if (item.textContent.toLowerCase().includes(searchTerm.toLowerCase())) {
+                        item.parentElement.style.border = '2px solid #4facfe';
+                        item.parentElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        found = true;
+                        setTimeout(() => {
+                            item.parentElement.style.border = '1px solid rgba(255, 255, 255, 0.2)';
+                        }, 3000);
+                    }
+                });
+                
+                if (!found) {
+                    alert(`Não encontramos "${searchTerm}" na nossa lista. Você pode sugerir novas IAs!`);
+                }
+            }
+        }
+
+        // Add random AI suggestion
+        function getRandomAI() {
+            const ais = [
+                { name: "ChatGPT", use: "para conversas e análises" },
+                { name: "Midjourney", use: "para criar arte incrível" },
+                { name: "Claude", use: "para tarefas complexas" },
+                { name: "DALL-E", use: "para imagens realistas" },
+                { name: "RunwayML", use: "para editar vídeos" },
+                { name: "ElevenLabs", use: "para síntese de voz" }
+            ];
+            
+            const randomAI = ais[Math.floor(Math.random() * ais.length)];
+            alert(`💡 Sugestão: Experimente o ${randomAI.name} ${randomAI.use}!`);
+        }
+
+        // Easter egg - Konami code
+        let konamiCode = [];
+        const konamiSequence = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65]; // Up, Up, Down, Down, Left, Right, Left, Right, B, A
+
+        document.addEventListener('keydown', function(e) {
+            konamiCode.push(e.keyCode);
+            if (konamiCode.length > konamiSequence.length) {
+                konamiCode.shift();
+            }
+            
+            if (konamiCode.join(',') === konamiSequence.join(',')) {
+                document.body.style.filter = 'hue-rotate(180deg)';
+                alert('🎉 Easter egg ativado! Modo Matrix ON!');
+                setTimeout(() => {
+                    document.body.style.filter = '';
+                }, 5000);
+                konamiCode = [];
+            }
+        });
+    </script>
+</body>
+</html>
